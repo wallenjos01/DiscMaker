@@ -25,33 +25,6 @@
     flex-grow: 1;
 }
 
-.layer {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-}
-
-.layer-contents {
-    display: flex;
-    column-gap: 8pt;
-    padding: 12pt 8pt;
-    width: 300pt;
-    align-items: center;
-    justify-content: space-between;
-    flex-grow: 1;
-}
-
-.layer-controls {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: stretch;
-}
-
-.layer-controls div {
-    padding: 4pt 8pt;
-}
-
 #overlays {
     display: flex;
     flex-wrap: wrap;

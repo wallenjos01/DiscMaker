@@ -44,6 +44,38 @@ const cyrb53 = function(str, seed = 0) {
     return 4294967296 * (2097151 & h2) + (h1 >>> 0);
 };
 
+function createFilter(id, tint, parent) {
+
+    old = document.getElementById("flt-" + id)
+    if(old != null) parent.removeChild(old)
+
+    let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg")
+    svg.setAttribute("id", "flt-" + id)
+    
+    let filter = document.createElementNS("http://www.w3.org/2000/svg", "filter")
+    filter.setAttribute("id", id)
+    filter.setAttribute("color-interpolation-filters", "sRGB")
+    filter.setAttribute("x", "0")
+    filter.setAttribute("y", "0")
+    filter.setAttribute("width", "100%")
+    filter.setAttribute("height", "100%")
+    
+    let matrix = `${tint[0]} 0 0 0 0 ` +
+                 `0 ${tint[1]} 0 0 0 ` +
+                 `0 0 ${tint[2]} 0 0 ` +
+                 `0 0 0 1 0 `
+
+    let colorMatrix = document.createElementNS("http://www.w3.org/2000/svg", "feColorMatrix")
+    colorMatrix.setAttribute("type", "matrix")
+    colorMatrix.setAttribute("values", matrix)
+
+    filter.appendChild(colorMatrix)
+    svg.appendChild(filter)
+    parent.appendChild(svg)
+}
+
+
+
 const ImagePart = class {
 
     constructor(index) {
@@ -53,11 +85,7 @@ const ImagePart = class {
 
     renderTo(context, size, canvas_offset) {
 
-        let matrix = this.color[0] + " 0 0 0 0 " +
-                     this.color[1] + " 0 0 0 0 " +
-                     this.color[2] + " 0 0 0 0 " +
-                                    "0 0 0 1 0"
-        createFilter("part", matrix)
+        createFilter("part", this.color, document.getElementsByTagName("body")[0])
 
         context.filter = "url(\"#part\")"
         context.drawImage(partsImg, 0, this.offset, 16, 16, canvas_offset, canvas_offset, size, size)
@@ -104,19 +132,23 @@ const Layer = class {
         let span = document.createElement("span")
         span.innerText = name
 
-        let input = document.createElement("input")
-        input.type = "color"
-        input.value = rgbToHex(this.image.color)
+        let picker = document.createElement("input")
+        picker.type = "color"
+        picker.value = rgbToHex(this.image.color)
 
-        input.addEventListener("change", (event) => {
+        picker.addEventListener("change", (event) => {
             this.setColor(hexToRgb(event.target.value))
             this.render(context, 32, 0)
             this.updateCallback()
         })
 
+        let controls = document.createElement("div")
+        controls.classList.add("layer-controls")
+        controls.appendChild(picker)
+
         contents.appendChild(canvas)
         contents.appendChild(span)
-        contents.appendChild(input)
+        contents.appendChild(controls)
 
         layer.appendChild(contents)
 
@@ -134,6 +166,7 @@ const Layer = class {
             layer.appendChild(controls)
         }
         
+        this.render(context, 32, 0)
         return layer
     }
 }

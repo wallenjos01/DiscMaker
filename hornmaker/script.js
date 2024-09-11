@@ -1,5 +1,3 @@
-let body = document.getElementsByTagName("body")[0]
-
 let canvas = document.getElementById("canvas")
 let context = canvas.getContext("2d")
 context.imageSmoothingEnabled = false
@@ -62,32 +60,6 @@ async function init() {
     }
 }
 
-
-
-function createFilter(id, matrix) {
-
-    old = document.getElementById("flt-" + id)
-    if(old != null) body.removeChild(old)
-
-    let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg")
-    svg.setAttribute("id", "flt-" + id)
-    
-    let filter = document.createElementNS("http://www.w3.org/2000/svg", "filter")
-    filter.setAttribute("id", id)
-    filter.setAttribute("color-interpolation-filters", "sRGB")
-    filter.setAttribute("x", "0")
-    filter.setAttribute("y", "0")
-    filter.setAttribute("width", "100%")
-    filter.setAttribute("height", "100%")
-    
-    let colorMatrix = document.createElementNS("http://www.w3.org/2000/svg", "feColorMatrix")
-    colorMatrix.setAttribute("type", "matrix")
-    colorMatrix.setAttribute("values", matrix)
-
-    filter.appendChild(colorMatrix)
-    svg.appendChild(filter)
-    body.appendChild(svg)
-}
 
 function addLayer(index) {
     let layer = layerStack.addLayer(index)
@@ -213,7 +185,7 @@ async function downloadData() {
     }
 
     var zip = new JSZip()
-    zip.file("pack.mcmeta", `{"pack":{"pack_format":52,"description":"hornmaker Data: ${soundName}"}}`)
+    zip.file("pack.mcmeta", `{"pack":{"pack_format":${DATA_PACK_VERSION},"description":"HornMaker Data: ${soundName}"}}`)
 
     zip.folder("data")
         .folder("hornmaker")
@@ -279,7 +251,7 @@ async function downloadResources() {
         }
     
         var zip = new JSZip()
-        zip.file("pack.mcmeta", `{"pack":{"pack_format":37,"description":"HornMaker Resources: ${soundName}"}}`)
+        zip.file("pack.mcmeta", `{"pack":{"pack_format":${RESOURCE_PACK_VERSION},"description":"HornMaker Resources: ${soundName}"}}`)
         zip.file("pack.png", generatePackIcon())
     
         var assetsDir = zip.folder("assets")
