@@ -1,0 +1,162 @@
+
+body {
+    font-family: "Noto Sans", "Helvetica Neue", "Helvetica", sans-serif;
+    background-color: #6f6f6f
+}
+
+#main-container {
+    width: 60%;
+    margin: auto;
+}
+
+@media screen and (max-width: 1500px) {
+    #main-container {
+        width: 80%;
+        margin: auto
+    }
+}
+
+@media screen and (max-width: 1120px) {
+    #main-container {
+        width: 95%;
+        margin: auto
+    }
+}
+
+#editor {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 12pt;
+    align-items: flex-start;
+    margin-bottom: 8pt;
+}
+
+#canvas {
+    padding: 8pt;
+    width: 128px;
+    height: 128px;
+    flex-grow: 0
+}
+
+#download-btn {
+    margin-top: 4pt;
+}
+
+#layer-stack {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-grow: 1;
+}
+
+.layer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.layer-contents {
+    display: flex;
+    column-gap: 8pt;
+    padding: 12pt 8pt;
+    width: 300pt;
+    align-items: center;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.layer-controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.layer-controls div {
+    padding: 4pt 8pt;
+}
+
+#overlays {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4pt;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-grow: 0;
+    width: 240pt;
+}
+
+.overlay {
+    padding: 4pt;
+    width: 45px;
+    height: 45px;
+}
+
+#pack-options {
+    width: 70%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 120pt 180pt auto;
+    gap: 8pt;
+    color: white;
+}
+
+.label {
+    grid-column: 1;
+    text-align: right;
+    font-weight: bold;
+}
+
+input[type="file"] {
+    display: none
+}
+
+#upload-btn {
+    grid-column: 2;
+}
+
+#track-filename {
+    grid-column: 3;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+#pack-options input {
+    grid-column-start: 2;
+    grid-column-end: 4;
+}
+
+#output-btns {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    display: grid;
+    grid-template-columns: calc(50% - 2pt) calc(50% - 2pt);
+    gap: 4pt;
+}
+
+#command-box {
+    grid-column-start: 2;
+    grid-column-end: 4;
+    padding: 4pt;
+    width: calc(100% - 12pt);
+}
+
+#command-box p {
+    overflow-wrap: anywhere;
+    width: 100%;
+    text-align: left;
+}
+
+#item-box {
+    grid-column-start: 2;
+    grid-column-end: 4;
+    padding: 4pt;
+    width: calc(100% - 12pt);
+}
+
+#item-box p {
+    overflow-wrap: anywhere;
+    width: 100%;
+    text-align: left;
+}
