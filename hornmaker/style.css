@@ -1,28 +1,3 @@
-
-body {
-    font-family: "Noto Sans", "Helvetica Neue", "Helvetica", sans-serif;
-    background-color: #6f6f6f
-}
-
-#main-container {
-    width: 60%;
-    margin: auto;
-}
-
-@media screen and (max-width: 1500px) {
-    #main-container {
-        width: 80%;
-        margin: auto
-    }
-}
-
-@media screen and (max-width: 1120px) {
-    #main-container {
-        width: 95%;
-        margin: auto
-    }
-}
-
 #editor {
     display: flex;
     flex-direction: row;

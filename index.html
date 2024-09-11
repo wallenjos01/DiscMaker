@@ -3,13 +3,29 @@
 <head>
     <meta charset="utf-8">
     <title>Minecraft Tools</title>
-    <link rel="stylesheet" type="text/css" href="/style.css"/>
     <link rel="stylesheet" type="text/css" href="/mcstyle.css"/>
+    <link rel="stylesheet" type="text/css" href="/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/style.css"/>
 </head>
 <body>
     <div id="main-container">
-        <div class="btn" onclick="gotoDisc()">Music Disc Editor</div>
-        <div class="btn" onclick="gotoHorn()">Goat Horn Editor</div>
+        <div id="content">
+            <p id="title">wallenjos01's Minecraft Tools</p>
+            <div id="buttons">
+                <div class="btn" onclick="gotoDisc()">
+                    <div>
+                        <img src="discmaker/icon.png">
+                    </div>
+                    <div>Music Disc Maker</div>
+                </div>
+                <div class="btn" onclick="gotoHorn()">
+                    <div>
+                        <img src="hornmaker/icon.png">
+                    </div>
+                    <div>Goat Horn Maker</div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 <script>

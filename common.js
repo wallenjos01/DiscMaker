@@ -173,3 +173,6 @@ const LayerStack = class {
         })
     }
 }
+
+const RESOURCE_PACK_VERSION = 38
+const DATA_PACK_VERSION = 53
